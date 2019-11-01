@@ -349,8 +349,6 @@ class FloorPlan(object):
                 qv = self.Qvalue(state, act, values)
                 if qv > inf:
                     res_policy[state] = act
-        # print('policy', res_policy)
-        
         return res_policy
 
 
