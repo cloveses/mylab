@@ -345,10 +345,10 @@ class FloorPlan(object):
         res_policy = dict()
         for state in self.states:
             inf = float('-inf')
-            for act in self.actions:
-                qv = self.Qvalue(state, act, values)
-                if qv > inf:
-                    res_policy[state] = act
+            qvs = [self.Qvalue(state, act, values) for act in self.actions]
+            qvs = {act:qv for qv, act in zip(qvs, self.actions) if qv > inf}
+            for k, v in qvs.items():
+                res_policy[state] = k
         return res_policy
 
 
