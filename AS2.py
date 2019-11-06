@@ -83,54 +83,26 @@ def twosComplementToDecimal(L3):
     numbers = [i*j for i,j in zip(numbers, L3)]
     return sum(numbers) * positive
 
-# # Main Program
-# LENGTH = int(input("Please enter list length "))
-# a = int(input("Enter a "))
-# b = int(input("Enter b "))
-# c = a + b
-# L1 = decimalToTwosComplement(a, LENGTH)
-# print "The two complement representation of", a, "is", L1
-# L2 = decimalToTwosComplement(b, LENGTH)
-# print "The two complement representation of", b, "is", L2
-# L3 = twosComplementBinaryAddition(L1, L2)
-# print "The two complement addition of", a, "and", b, "is", L3
-# d = twosComplementToDecimal(L3)
-# print "Converting the two complement to decimal gives", d
-# if (c == d):
-#     print "Since", c, "==", d, ", it seems we did good job."
-# else:
-#     print "Since", c, "!=", d, ", either of a, b, c must be outside of the range."
+
 
 if __name__ == '__main__':
-    # print(scomp(9, 8))
-    # print(scomp(-9, 8))
-    # print(scomp(128, 8))
-    # print(binary(9, 8))
-    # print(binary(8, 8))
-    # la = binary(9,8)
-    # lb = binary(8, 8)
-    # total = twosComplementBinaryAddition(la,lb)
-    # print(la,lb, twosComplementBinaryAddition(la,lb))
-    # c1 = decimalToTwosComplement(-17,8)
-    # c2 = decimalToTwosComplement(17,8)
-    # print(twosComplementToDecimal(c1), twosComplementToDecimal(c2))
-    # Main Program
+
     LENGTH = int(input("Please enter list length "))
     a = int(input("Enter a "))
     b = int(input("Enter b "))
     c = a + b
     L1 = decimalToTwosComplement(a, LENGTH)
-    print ("The two complement representation of", a, "is", L1)
+    print "The two complement representation of", a, "is", L1
     L2 = decimalToTwosComplement(b, LENGTH)
-    print ("The two complement representation of", b, "is", L2)
+    print "The two complement representation of", b, "is", L2
     L3 = twosComplementBinaryAddition(L1, L2)
-    print ("The two complement addition of", a, "and", b, "is", L3)
+    print "The two complement addition of", a, "and", b, "is", L3
     d = twosComplementToDecimal(L3)
-    print ("Converting the two complement to decimal gives", d)
+    print "Converting the two complement to decimal gives", d
     if (c == d):
-        print ("Since", c, "==", d, ", it seems we did good job.")
+        print "Since", c, "==", d, ", it seems we did good job."
     else:
-        print ("Since", c, "!=", d, ", either of a, b, c must be outside of the range.")
+        print "Since", c, "!=", d, ", either of a, b, c must be outside of the range."
 
 
 
