@@ -94,7 +94,9 @@ from sqlite3 import *
 
 
 ########################## PUT YOUR show_popularity FUNCTION HERE
-
+# select actor,count(*) from favorite_actors where customerID in (select customerID from customers where age=20) group by actor;
+# select customerID, count(*) from customers where age=20;
+def show_popularity([20-40,40-80,'All'])
 
 #
 #--------------------------------------------------------------------#

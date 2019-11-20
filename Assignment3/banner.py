@@ -3,11 +3,17 @@ def make_banner(text):
     # Write code here
     # 将所有字符改为小写
     text = text.lower()
-    # 测试接受的参数中是存在非字母字符
-    for t in text:
-        if not 'a' <= t <= 'z':
-            # 引发错误
-            raise ValueError("All characters in text must be alphabetic.")
+    try:
+        # 测试接受的参数中是存在非字母字符
+        for t in text:
+            if not 'a' <= t <= 'z':
+                # 引发错误
+                raise ValueError("ValueError: All characters in text must be alphabetic.")
+    # 捕获异常
+    except ValueError as e:
+        print(e)
+        return ''
+
     letters = []
     # 读取banner_letters.txt文件中内容
     with open('banner_letters.txt', 'r') as f:

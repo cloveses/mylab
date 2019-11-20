@@ -37,11 +37,13 @@ for n in ns:
 x = -0.9
 x_datas = []
 y_datas = []
+# 循环获取坐标x,y
 while x <= 1:
     x_datas.append(x)
     y_datas.append(math.log(x+1))
     x += 0.1
-hdl, plt.plot(x_datas, y_datas, color='black')
+# 绘制曲线ln(x+1)
+hdl, = plt.plot(x_datas, y_datas, color='black')
 legend_hdls.append(hdl)
 legend_labels.append('ln(x+1)')
 #添加图例
