@@ -24,6 +24,9 @@ def row_data_clean(row):
         row[i] = ord(row[i]) - 64
     return row
 datas = get_file_datas('副本测试数据.xlsx', row_data_clean)
+# for data in datas:
+#     print(data)
+
 staff = {}
 for data in datas:
     staff[data[0]] = data
@@ -31,51 +34,63 @@ for data in datas:
 # results = [['总人数',{'乘车点1人数':0, },['staffid', ]], [], ]
 results = [[0, {},[]] for i in range(17) ]
 
-valid_roads = list(range(10, 17))
+valid_roads = list(range(10, 18))
+print('valid_roads:', valid_roads, '\n')
 limit_num = 80
 
 for i in range(10):
+    if len(staff) == 0:
+        break
+
     wishes = []
     for staffid, staff_data in staff.items():
         wishes.append((staffid, staff_data[i+4]))
+    print('wishes:', wishes, '\n')
     free_wishes = [w for w in wishes if w[-1] <= 9]
     limit_wishes = [w for w in wishes if w[-1] > 9]
+    print('free_wishes', free_wishes, '\n')
+
     for free_road in free_wishes:
         staffid = free_road[0]
+        staff_road = free_road[-1]-1
         peoples = staff[staffid][1]
-        results[i][0] += peoples
-        results[i][2].append(staffid)
+        results[staff_road][0] += peoples
+        results[staff_road][2].append(staffid)
         if staff[staffid][2] == '是':
             station = staff[staffid][3]
-            if station in results[i][1]:
-                results[i][1][station] += peoples
+            if station in results[staff_road][1]:
+                results[staff_road][1][station] += peoples
             else:
-                results[i][1][station] = peoples
+                results[staff_road][1][station] = peoples
         del staff[staffid]
 
     random.shuffle(limit_wishes)
-    print(limit_wishes)
+    print('limit_wishes', limit_wishes, '\n')
     for limit_road in limit_wishes:
         staffid = limit_road[0]
         peoples = staff[staffid][1]
-        if limit_road in valid_roads:
+        staff_road = limit_road[-1]
+
+        if staff_road in valid_roads:
+            # print('...........')
+            staff_road -= 1
             peoples = staff[staffid][1]
-            if results[i][0] + peoples > 80:
+            if results[staff_road][0] + peoples > 80:
                 continue
             else:
-                results[i][0] += peoples
-                results[i][2].append(staffid)
-                if results[i][0] >= 80:
-                    del valid_roads[i]
+                results[staff_road][0] += peoples
+                results[staff_road][2].append(staffid)
+                if results[staff_road][0] >= 80:
+                    valid_roads.remove(limit_road[-1])
                 if staff[staffid][2] == '是':
                     station = staff[staffid][3]
-                    if station in results[i][1]:
-                        results[i][1][station] += peoples
+                    if station in results[staff_road][1]:
+                        results[staff_road][1][station] += peoples
                     else:
-                        results[i][1][station] = peoples
+                        results[staff_road][1][station] = peoples
                 del staff[staffid]
 
 print(len(staff))
-for i in results:
-    print(i)
+for index, i in enumerate(results):
+    print(index+1, i[:2])
 
